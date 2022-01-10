@@ -1,0 +1,24 @@
+{
+  "name": "leschumsbot",
+  "version": "1.0.0",
+  "description": "leschumsbot is a leveling system bot based on your game played in the game League of Legends. It takes every match you play and gives you 'lp' based on how many members were in the game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.ts"
+  },
+  "keywords": [],
+  "author": "xTomR",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "discord.js": "^13.4.0",
+    "dotenv": "^10.0.0",
+    "galeforce": "^0.5.1",
+    "mongoose": "^6.1.4",
+    "nodemon": "^2.0.15",
+    "request": "^2.88.2",
+    "ts-node": "^10.4.0",
+    "wokcommands": "^1.5.3"
+  }
+}
