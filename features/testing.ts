@@ -62,45 +62,65 @@ export default (client: Client) => {
                     member.roles.add(roles.get('Bronze II'))
                     await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Bronze II'})             
                 }  else if (eachUser.totalLp >= 700 && eachUser.totalLp < 800){
-                    member.roles.add(roles.get('Bronze I'))            
+                    member.roles.add(roles.get('Bronze I'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Bronze I'})             
                 }  else if (eachUser.totalLp >= 800 && eachUser.totalLp < 900){
                     member.roles.add(roles.get('Silver IV'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Silver IV'}) 
                 }  else if (eachUser.totalLp >= 900 && eachUser.totalLp < 1000){
                     member.roles.add(roles.get('Silver III'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Silver III'}) 
                 }  else if (eachUser.totalLp >= 1000 && eachUser.totalLp < 1100){
                     member.roles.add(roles.get('Silver II'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Silver II'}) 
                 }  else if (eachUser.totalLp >= 1100 && eachUser.totalLp < 1200){
                     member.roles.add(roles.get('Silver I'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Silver I'}) 
                 }  else if (eachUser.totalLp >= 1200 && eachUser.totalLp < 1300){
                     member.roles.add(roles.get('Gold IV'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Gold IV'}) 
                 }  else if (eachUser.totalLp >= 1300 && eachUser.totalLp < 1400){
                     member.roles.add(roles.get('Gold III'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Gold III'}) 
                 }  else if (eachUser.totalLp >= 1400 && eachUser.totalLp < 1500){
                     member.roles.add(roles.get('Gold II'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Gold II'}) 
                 }  else if (eachUser.totalLp >= 1500 && eachUser.totalLp < 1600){
                     member.roles.add(roles.get('Gold I'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Gold I'}) 
                 }  else if (eachUser.totalLp >= 1600 && eachUser.totalLp < 1700){
                     member.roles.add(roles.get('Platinum IV'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Platinum IV'}) 
                 }  else if (eachUser.totalLp >= 1700 && eachUser.totalLp < 1800){
                     member.roles.add(roles.get('Platinum III'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Platinum III'}) 
                 }  else if (eachUser.totalLp >= 1800 && eachUser.totalLp < 1900){
                     member.roles.add(roles.get('Platinum II'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Platinum II'}) 
                 }  else if (eachUser.totalLp >= 1900 && eachUser.totalLp < 2000){
                     member.roles.add(roles.get('Platinum I'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Platinum I'}) 
                 }  else if (eachUser.totalLp >= 2000 && eachUser.totalLp < 2100){
                     member.roles.add(roles.get('Diamond IV'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Diamond IV'}) 
                 }  else if (eachUser.totalLp >= 2100 && eachUser.totalLp < 2200){
                     member.roles.add(roles.get('Diamond III'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Diamond III'}) 
                 }  else if (eachUser.totalLp >= 2200 && eachUser.totalLp < 2300){
                     member.roles.add(roles.get('Diamond II'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Diamond II'}) 
                 }  else if (eachUser.totalLp >= 2300 && eachUser.totalLp < 2400){
                     member.roles.add(roles.get('Diamond I'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Diamond I'}) 
                 }  else if (eachUser.totalLp >= 2400 && eachUser.totalLp < 2500){
                     member.roles.add(roles.get('Master'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Master'}) 
                 }  else if (eachUser.totalLp >= 2500 && eachUser.totalLp < 2600){
                     member.roles.add(roles.get('Grandmaster'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Grandmaster'}) 
                 }  else if (eachUser.totalLp >= 2600){
                     member.roles.add(roles.get('Challenger'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Challenger'}) 
                 }
             }
                 

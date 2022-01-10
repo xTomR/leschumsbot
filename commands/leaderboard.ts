@@ -9,36 +9,43 @@ export default {
     testOnly: true,
 
     callback: async ({message, text}) => {
+        const top10users = await usersSchema.find().sort({totalLp: -1})
+        console.log(top10users)
         const users = await usersSchema.find({}).exec()
         users.sort()
-        let today = new Date().toISOString().slice(0, 10)
-        let now = new Date()
-        let hours = now.getHours()
-        let minutes = now.getMinutes()
-        let seconds = now.getSeconds()
         const embed = new MessageEmbed()
         .setTitle('Leaderboard')
         .setColor('GREEN')
         .setAuthor('LESCHUMS')
-        .setFooter(`${today}  ${hours}:${minutes}:${seconds} `)
-        .addFields([{
-            name: 'Top 10',
-            value: users[0].summonerName,
+        .setTimestamp()
+        .addFields([
+        {
+            name: 'Summoner Name',
+            value: `🥇 ${top10users[0].summonerName}
+            🥈 ${top10users[1].summonerName}
+            🥉 ${top10users[2].summonerName}
+                ${top10users[3].summonerName}`,
             inline: true,
         },
         {
             name: 'Rank',
-            value: users[0].rank,
+            value: `${top10users[0].rank}
+            ${top10users[1].rank}
+            ${top10users[2].rank}
+            ${top10users[3].rank}`,
             inline: true,
         },
         {
             name: 'LP',
-            value: String(users[0].totalLp),
+            value: String(`${top10users[0].totalLp}
+            ${top10users[1].totalLp}
+            ${top10users[2].totalLp}
+            ${top10users[3].totalLp}
+            `),
             inline: true,
         },
         
     ])
-        .addField('name three', 'value three')
         return embed
     },
 } as ICommand
