@@ -5,7 +5,7 @@ const usersSchema = new Schema({
     guild_id: String,
     summonerName: String,
     totalLp: Number,
-    level: Number,
+    rank: String,
     discordRole: String,
     puuid: String,
     matches: [String],

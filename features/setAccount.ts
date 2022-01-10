@@ -13,9 +13,10 @@ export default (client: Client,) => {
             member_id: member.id,
             summonerName: '',
             totalLp: 0,
-            level: 1,
+            rank: 'Iron IV',
             discordRole: '925833005602320394',
             puuid: '',
+
             },
             {
             upsert: true       

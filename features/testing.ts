@@ -39,21 +39,28 @@ export default (client: Client) => {
             const guild = client.guilds.cache.get('924806922874552320')
             if (!guild) return
             for(const eachUser of users){
+                console.log(eachUser.rank)
                 console.log(eachUser.totalLp)
                 const member = guild.members.cache.get(eachUser.member_id) || await guild.members.fetch(eachUser.member_id).catch(() => null)
                 if (!member) return
                 if(eachUser.totalLp >= 100 && eachUser.totalLp < 200){
                     member.roles.add(roles.get('Iron III'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Iron III'})
                 } else if (eachUser.totalLp >= 200 && eachUser.totalLp < 300){
                     member.roles.add(roles.get('Iron II'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Iron II'})
                 } else if (eachUser.totalLp >= 300 && eachUser.totalLp < 400){
                     member.roles.add(roles.get('Iron I'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Iron I'})
                 }  else if (eachUser.totalLp >= 400 && eachUser.totalLp < 500){
                     member.roles.add(roles.get('Bronze IV'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Bronze IV'})
                 }  else if (eachUser.totalLp >= 500 && eachUser.totalLp < 600){
                     member.roles.add(roles.get('Bronze III'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Bronze III'})
                 }  else if (eachUser.totalLp >= 600 && eachUser.totalLp < 700){
-                    member.roles.add(roles.get('Bronze II'))               
+                    member.roles.add(roles.get('Bronze II'))
+                    await usersSchema.updateOne({'puuid': eachUser.puuid},{'rank': 'Bronze II'})             
                 }  else if (eachUser.totalLp >= 700 && eachUser.totalLp < 800){
                     member.roles.add(roles.get('Bronze I'))            
                 }  else if (eachUser.totalLp >= 800 && eachUser.totalLp < 900){
@@ -98,6 +105,7 @@ export default (client: Client) => {
             }
                 
         }
+        testFunction()
         setInterval(testFunction,3*60000)
         
     }
