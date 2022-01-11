@@ -1,6 +1,7 @@
 import { MessageEmbed } from "discord.js";
 import { ICommand } from "wokcommands";
 import usersSchema from '../models/users-schema';
+import { rankedIcon, getProfileIcon } from '../Images/images'
 
 export default {
     category: 'Account',
@@ -10,19 +11,19 @@ export default {
 
     callback: async ({interaction, member}) => {
         const user = await usersSchema.findOne({'member_id': member.id})
-        console.log(member.id)
+        const profileIcon = await getProfileIcon(member.id)
         const embed = new MessageEmbed()
-        .setThumbnail('https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png')
+        .setThumbnail(profileIcon)
         .setColor('RANDOM')
         .setTimestamp()
-        .setImage('https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png')
+        .setImage('')
         .addFields({
           name: `test`,
           value: 'test',
           inline: true,
         })
-        .setAuthor({ name: '', iconURL: 'https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png' })
-        .setFooter('test', 'https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png' )
+        .setAuthor({ name: String(user.summonerName) , iconURL: rankedIcon.diamond })
+        .setFooter('test', rankedIcon.bronze)
         return embed
     }
 

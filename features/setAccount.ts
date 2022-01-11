@@ -16,6 +16,8 @@ export default (client: Client,) => {
             rank: 'Iron IV',
             discordRole: '925833005602320394',
             puuid: '',
+            profileIconId: 0,
+
 
             },
             {

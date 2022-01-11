@@ -30,6 +30,7 @@ export default {
               }, 
               {             
               member_id: member.id,
+              profileIconId: resp.data.profileIconId,
               puuid: resp.data.puuid,
               accountId: resp.data.accoundId,
               summonerName: summonername,
