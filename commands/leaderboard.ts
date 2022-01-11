@@ -3,8 +3,8 @@ import { ICommand } from "wokcommands";
 import usersSchema from '../models/users-schema';
 
 export default {
-    category: "Testing",
-    description: 'Send an embed',
+    category: "Account",
+    description: 'Get the leaderboard',
     slash: true,
     testOnly: true,
 
@@ -21,10 +21,10 @@ export default {
         .addFields([
         {
             name: 'Summoner Name',
-            value: `🥇 ${top10users[0].summonerName}
-            🥈 ${top10users[1].summonerName}
-            🥉 ${top10users[2].summonerName}
-                ${top10users[3].summonerName}`,
+            value: `${top10users[0].summonerName}
+            ${top10users[1].summonerName}
+            ${top10users[2].summonerName}
+            ${top10users[3].summonerName}`,
             inline: true,
         },
         {
