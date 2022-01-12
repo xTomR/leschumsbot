@@ -2,6 +2,7 @@ import { Client } from "discord.js";
 import usersSchema from "../models/users-schema";
 import matchSchema from "../models/match-schema";
 
+
 export default (client: Client) => {
  const getExpPerGame = async () => {
   const users = await usersSchema.find({}).exec();

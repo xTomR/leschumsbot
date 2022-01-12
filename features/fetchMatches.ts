@@ -9,17 +9,18 @@ export default (client: Client) => {
  // fetch the 20 last matches from each users in the database.
  const fetchMatches = async () => {
   const users = await usersSchema.find({}).exec();
+  console.log(users[0].lol.puuid)
   for (const eachUser of users) {
    const matchIds = await galeforce.lol.match
     .list()
     .region(galeforce.region.riot.AMERICAS)
-    .puuid(eachUser.puuid)
+    .puuid(eachUser.lol.puuid)
     .exec();
    await usersSchema.findOneAndUpdate(
-    { puuid: eachUser.puuid },
+    { puuid: eachUser.lol.puuid },
     { $addToSet: { matches: matchIds } }
    );
-   console.log(`The last 20 matches of ${eachUser.summonerName} fetched`);
+   console.log(`The last 20 matches of ${eachUser.lol.name} fetched`);
   }
  };
  // totalmatches is all the matches from users merged together
@@ -73,8 +74,8 @@ export default (client: Client) => {
  const fetch = () => {
   lpIncMatches();
  };
- // fetch() // for immediate test
- setInterval(fetch, 5 * 60000); //Every 5 minutes
+ fetch() // for immediate test
+//  setInterval(fetch, 5 * 60000); //Every 5 minutes
 };
 export const config = {
  displayName: "Fetch Matches",

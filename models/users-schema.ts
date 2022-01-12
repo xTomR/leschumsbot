@@ -1,26 +1,27 @@
 import mongoose, { Schema } from "mongoose";
 
 const usersSchema = new Schema({
+  _id: String,
  discord: 
   {
-   member_id: String,
-   guild_id: String,
-   discord_role: String,
+   memberId: String,
+   guildId: String,
+   discordRole: String,
    rank: String,
-   total_lp: Number,
+   totalLp: Number,
   },
- league_of_legends: 
+ lol: 
   {
    id: String,
-   account_id: String,
+   accountId: String,
    puuid: String,
    name: String,
-   profile_icon_id: Number,
-   revision_date: Number,
-   summoner_level: Number,
+   profileIconId: Number,
+   revisionDate: Number,
+   summonerLevel: Number,
    ranked: [
     {
-     ranked_flex_sr: [
+     rankedFlexSr: [
       {
        tier: String,
        rank: String,
@@ -29,7 +30,7 @@ const usersSchema = new Schema({
        losses: Number,
       },
      ],
-     ranked_solo_5x5: [
+     rankedSolo5x5: [
       {
        tier: String,
        rank: String,

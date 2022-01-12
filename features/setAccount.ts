@@ -7,7 +7,7 @@ export default (client: Client) => {
 
   await usersSchema.findOneAndUpdate(
    {
-    discord: {'member_id': member.id}, // look for this and if theres none it creates it otherwise it updates it.
+    _id: member.id // look for this and if theres none it creates it otherwise it updates it.
    },
    {
     discord:
