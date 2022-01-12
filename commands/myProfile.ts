@@ -12,17 +12,22 @@ export default {
         const user = await usersSchema.findOne({'member_id': member.id})
         console.log(member.id)
         const embed = new MessageEmbed()
-        .setThumbnail('https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png')
+        .setTitle('Profile')
+        .setThumbnail('https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5124.png')
         .setColor('RANDOM')
         .setTimestamp()
-        .setImage('https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png')
         .addFields({
-          name: `test`,
-          value: 'test',
-          inline: true,
+          name: `Summoner`,
+          value: user.summonerName,
         })
-        .setAuthor({ name: '', iconURL: 'https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png' })
-        .setFooter('test', 'https://ddragon.leagueoflegends.com/cdn/11.21.1/img/profileicon/5123.png' )
+        .addFields({
+          name: `Discord Rank`,
+          value: user.rank
+        })
+        .addFields({
+          name: `LP`,
+          value: String(user.totalLp)
+        })
         return embed
     }
 

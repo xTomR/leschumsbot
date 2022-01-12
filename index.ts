@@ -1,4 +1,4 @@
-import discordJS, { Intents } from 'discord.js'
+import discordJS, { Intents, Message } from 'discord.js'
 import dotenv from 'dotenv'
 import WOKCommands from 'wokcommands'
 import path from 'path'

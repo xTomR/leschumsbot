@@ -1,14 +1,10 @@
-import { MessageEmbed } from "discord.js";
-import { ICommand } from "wokcommands";
-import usersSchema from '../models/users-schema';
+import { MessageEmbed, Client, TextBasedChannel, Message} from "discord.js"
+import usersSchema from "../models/users-schema"
 
-export default {
-    category: "Account",
-    description: 'Get the leaderboard',
-    slash: true,
-    testOnly: true,
+export default async (client: Client,message: Message)  => {
 
-    callback: async ({message, text}) => {
+        const foo = async () => {
+        const guild = client.guilds.cache.get('924806922874552320')
         const top10users = await usersSchema.find().sort({totalLp: -1})
         const users = await usersSchema.find({}).exec()
         users.sort()
@@ -43,8 +39,17 @@ export default {
             `),
             inline: true,
         },
-        
-    ])
-        return embed
-    },
-} as ICommand
+        ])
+        const channel = await guild.channels.fetch('930640710057734235') as TextBasedChannel
+        channel.send({embeds: [embed]})
+        const receivedEmbed = channel.messages.cache.get('930666037429542932')
+        const newEmbed = new MessageEmbed(receivedEmbed).setTitle('New title');
+        const exampleEmbed = new MessageEmbed(receivedEmbed).setTitle('New title');
+
+    }
+    foo()
+}
+
+export const config = {
+    displayName: 'Leaderboard',
+    dbName: 'LEADERBOARD'}
