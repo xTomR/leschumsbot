@@ -36,15 +36,16 @@ export default {
             _id: member.id // look for this and if theres none it creates it otherwise it updates it.
         },
         {
-            league_of_legends: 
+            lol: 
             {        
                 id: profile.id,
-                account_id: profile.accountId,
+                accountId: profile.accountId,
                 puuid: profile.puuid,
                 name: profile.name, 
-                profile_icon_id: profile.profileIconId,
-                revision_date: profile.revisionDate,
-                summoner_level: profile.summonerLevel,
+                profileIconId: profile.profileIconId,
+                revisionDate: profile.revisionDate,
+                summonerLevel: profile.summonerLevel,
+                matches: []
             }
         },
         {

@@ -10,19 +10,21 @@ export default {
  testOnly: true,
 
  callback: async ({ interaction, member }) => {
-  const user = await usersSchema.findOne({ member_id: member.id });
+  const user = await usersSchema.findOne({ 'discord.memberId': member.id });
   const profileIcon = await getProfileIcon(member.id);
+  console.log(String(user.lol.summonerLevel))
   const embed = new MessageEmbed()
    .setThumbnail(profileIcon)
    .setColor("RANDOM")
    .setTimestamp()
    .setImage("")
    .addFields({
-    name: `test`,
-    value: "test",
+    name: `Level`,
+    value: String(user.lol.summonerLevel
+        ),
     inline: true,
    })
-   .setAuthor({ name: String(user.summonerName), iconURL: rankedIcon.diamond })
+   .setAuthor({ name: String(user.lol.name), iconURL: rankedIcon.diamond })
    .setFooter("test", rankedIcon.bronze);
   return embed;
  },

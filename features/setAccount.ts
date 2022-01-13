@@ -12,21 +12,22 @@ export default (client: Client) => {
    {
     discord:
     {
-        member_id: member.id,
-        guild_id: "924806922874552320",
-        discord_role: "925833005602320394",
+        memberId: member.id,
+        guildId: "924806922874552320",
+        discordRole: "925833005602320394",
         rank: "Iron IV",
-        total_lp: null,
+        totalLp: 0,
     },
-    league_of_legends:
+    lol:
     {
         id: null,
-        account_id: null,
+        accountId: null,
         puuid: null,
         name: null,
-        profile_icon_id: null,
-        revision_date: null,
-        summoner_level: null,
+        profileIconId: null,
+        revisionDate: null,
+        summonerLevel: null,
+        matches: [null]
     }
    },
    {

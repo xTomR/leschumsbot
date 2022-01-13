@@ -9,7 +9,6 @@ export default (client: Client) => {
  // fetch the 20 last matches from each users in the database.
  const fetchMatches = async () => {
   const users = await usersSchema.find({}).exec();
-  console.log(users[0].lol.puuid)
   for (const eachUser of users) {
    const matchIds = await galeforce.lol.match
     .list()
@@ -18,7 +17,7 @@ export default (client: Client) => {
     .exec();
    await usersSchema.findOneAndUpdate(
     { puuid: eachUser.lol.puuid },
-    { $addToSet: { matches: matchIds } }
+    { $addToSet: {'lol.matches': matchIds}}
    );
    console.log(`The last 20 matches of ${eachUser.lol.name} fetched`);
   }
@@ -26,11 +25,11 @@ export default (client: Client) => {
  // totalmatches is all the matches from users merged together
  const totalMatches = async () => {
   await fetchMatches();
-  const users = await usersSchema.where("matches").select("matches");
+  const users = await usersSchema.find({}).exec();
   let totalmatches = [];
   for (let i = 0; i < users.length; i++) {
-   for (let j = 0; j < users[i].matches.length; j++) {
-    totalmatches.push(users[i].matches[j]);
+   for (let j = 0; j < users[i].lol.matches.length; j++) {
+    totalmatches.push(users[i].lol.matches[j]);
    }
   }
   const totalMatchesUnique = [...new Set(totalmatches)];
@@ -39,6 +38,7 @@ export default (client: Client) => {
  };
  // matchInfo is a function to get the queueid and the participants of each matches and then logs it in the database
  const matchInfo = async () => {
+     
   let totalmatches = await totalMatches();
   for (const eachMatch of totalmatches) {
    const getMatchInfo = await galeforce.lol.match
@@ -51,7 +51,6 @@ export default (client: Client) => {
     {
      queueId: getMatchInfo.info.queueId,
      participants: getMatchInfo.metadata.participants,
-     lpMultiplier: 0,
     },
     { upsert: true }
    );
@@ -63,19 +62,19 @@ export default (client: Client) => {
   const users = await usersSchema.where("puuid");
   for (const eachUser of users) {
    await matchSchema.updateMany(
-    { $and: [{ participants: eachUser.puuid }, { done: false }] },
-    { $inc: { lpmultiplier: 1 } }
+    { $and: [{ participants: eachUser.lol.puuid }, { done: false }] },
+    { $inc: { lpMultiplier: 1 } }
    );
   }
   await matchSchema.updateMany({}, { done: "true" });
-  console.log("lpmultiplier has been set.");
+  console.log("lpMultiplier has been set.");
  };
  // all the functions above in 1 call
  const fetch = () => {
   lpIncMatches();
  };
  fetch() // for immediate test
-//  setInterval(fetch, 5 * 60000); //Every 5 minutes
+ setInterval(fetch, 5 * 60000); //Every 5 minutes
 };
 export const config = {
  displayName: "Fetch Matches",

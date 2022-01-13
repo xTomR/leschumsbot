@@ -8,7 +8,7 @@ const usersSchema = new Schema({
    guildId: String,
    discordRole: String,
    rank: String,
-   totalLp: Number,
+   totalLp: {type:"Number", default: 0}
   },
  lol: 
   {
@@ -45,5 +45,5 @@ const usersSchema = new Schema({
   },
 });
 
-const name = "users_experimental";
+const name = "users_experimental"; // Name of the database
 export default mongoose.models[name] || mongoose.model(name, usersSchema, name);

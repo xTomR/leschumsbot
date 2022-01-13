@@ -50,11 +50,11 @@ const rankedIcon = {
   .URL(),
 };
 const getProfileIcon = async (member) => {
- const user = await usersSchema.findOne({ member_id: member });
+ const user = await usersSchema.findOne({ 'discord.memberId': member });
  const profile = await galeforce.lol
   .summoner()
   .region(galeforce.region.lol.NORTH_AMERICA)
-  .puuid(user.puuid)
+  .puuid(user.lol.puuid)
   .exec();
  const profileIdNumber = profile.profileIconId;
  const profileIcon = galeforce.lol.ddragon.profileIcon
@@ -67,7 +67,7 @@ const getProfileIcon = async (member) => {
 
 // Testing !
 // const getRankedIcon = async (member) => {
-//     const user = await usersSchema.findOne({'member_id': member})
+//     const user = await usersSchema.findOne({'memberId': member})
 //     const profile = await galeforce.lol.league.entries()
 //     .summonerId('JgGeZNMMpM8ofkZ6R1dXMJtd97VxEZ2lCwplanLVY4K6HQE')
 //     const profileRankedIdNumber = profile.tier
