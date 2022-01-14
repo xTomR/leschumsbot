@@ -18,32 +18,21 @@ export default async (client: Client,message: Message)  => {
             const channel = await guild.channels.fetch('930640710057734235') as TextBasedChannel
             channel.send({embeds: [embed]})
         } else {
+            let i = 1
+            let content = ""
             const embed = new MessageEmbed()
             .setTitle('Leaderboard')
             .setColor('GREEN')
             .setAuthor('LESCHUMS')
             .setTimestamp()
-            for(const eachUser of top10users){
-                embed.addFields([
-                {
-                    name: 'Summoner Name',
-                    value: eachUser.lol.name,
-                    // inline: true,
-                },
-                {
-                    name: 'Rank',
-                    value: eachUser.discord.rank,
-                    // inline: true,
-                },
-                {
-                    name: 'LP',
-                    value: String(eachUser.discord.rank),
-                    // inline: true,
-                },
-                ])}
+            for(const eachUser of top10users){            
+                content += `${i}. ${eachUser.lol.name} ~ ${eachUser.discord.rank}\n`
+                i++
+            }
+            embed.setDescription(content)
             const channel = await guild.channels.fetch('930640710057734235') as TextBasedChannel
-            channel.send({embeds: [embed]})
-            const receivedEmbed = channel.messages.cache.get('930666037429542932')
+            const message = await channel.messages.fetch('931660550335774731') as Message
+            message.edit({embeds: [embed]})
             }
     }
     foo()
