@@ -8,46 +8,35 @@ export default async (client: Client,message: Message)  => {
         const top10users = await usersSchema.find().sort({totalLp: -1})
         const users = await usersSchema.find({}).exec()
         users.sort()
-        const embed = new MessageEmbed()
-        .setTitle('Leaderboard')
-        .setColor('GREEN')
-        .setAuthor('LESCHUMS')
-        .setTimestamp()
-        .addFields([
-        {
-            name: 'Summoner Name',
-            value: `${top10users[0].summonerName}
-            ${top10users[1].summonerName}
-            ${top10users[2].summonerName}
-            ${top10users[3].summonerName}`,
-            inline: true,
-        },
-        {
-            name: 'Rank',
-            value: `${top10users[0].rank}
-            ${top10users[1].rank}
-            ${top10users[2].rank}
-            ${top10users[3].rank}`,
-            inline: true,
-        },
-        {
-            name: 'LP',
-            value: String(`${top10users[0].totalLp}
-            ${top10users[1].totalLp}
-            ${top10users[2].totalLp}
-            ${top10users[3].totalLp}
-            `),
-            inline: true,
-        },
-        ])
-        const channel = await guild.channels.fetch('930640710057734235') as TextBasedChannel
-        channel.send({embeds: [embed]})
-        const receivedEmbed = channel.messages.cache.get('930666037429542932')
-        const newEmbed = new MessageEmbed(receivedEmbed).setTitle('New title');
-        const exampleEmbed = new MessageEmbed(receivedEmbed).setTitle('New title');
-
+        if(top10users.length === 0){    
+            const embed = new MessageEmbed()
+            .setTitle('Leaderboard')
+            .setColor('GREEN')
+            .setAuthor('LESCHUMS')
+            .setTimestamp()
+            .setDescription('The leaderboard is empty')
+            const channel = await guild.channels.fetch('930640710057734235') as TextBasedChannel
+            const message = await channel.messages.fetch('931660550335774731') as Message
+            message.edit({embeds: [embed]})
+        } else {
+            let i = 1
+            let content = ""
+            const embed = new MessageEmbed()
+            .setTitle('Leaderboard')
+            .setColor('GREEN')
+            .setAuthor('LESCHUMS')
+            .setTimestamp()
+            for(const eachUser of top10users){            
+                content += `~${i}. ${eachUser.summonerName} ~ ${eachUser.rank}~\n`
+                i++
+            }
+            embed.setDescription(content)
+            const channel = await guild.channels.fetch('930640710057734235') as TextBasedChannel
+            const message = await channel.messages.fetch('931660550335774731') as Message
+            message.edit({embeds: [embed]})
+            }
     }
-    foo()
+    setInterval(foo, 60000)
 }
 
 export const config = {
