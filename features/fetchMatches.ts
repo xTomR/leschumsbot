@@ -73,7 +73,7 @@ export default (client: Client) => {
  const fetch = () => {
   lpIncMatches();
  };
-//  fetch() // for immediate test
+ fetch() // for immediate test
  setInterval(fetch, 5 * 60000); //Every 5 minutes
 };
 export const config = {

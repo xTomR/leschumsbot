@@ -26,7 +26,7 @@ export default async (client: Client,message: Message)  => {
             .setAuthor('LESCHUMS')
             .setTimestamp()
             for(const eachUser of top10users){            
-                content += `${i}. ${eachUser.lol.name} ~ ${eachUser.discord.rank}\n`
+                content += `${i}. ${eachUser.lol.name} ~ ${eachUser.discord.rank} ~ ${eachUser.discord.totalLp} LP\n`
                 i++
             }
             embed.setDescription(content)

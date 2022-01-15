@@ -1,47 +1,50 @@
 import mongoose, { Schema } from "mongoose";
 
+const stringDef = {type:"String", default: ''}
+const numberDef = {type:"Number", default: 0}
+
 const usersSchema = new Schema({
-  _id: String,
+  _id: stringDef,
  discord: 
   {
-   memberId: String,
-   guildId: String,
-   discordRole: String,
-   rank: String,
-   totalLp: {type:"Number", default: 0}
+   memberId: stringDef,
+   guildId: stringDef,
+   discordRole: stringDef,
+   rank: stringDef,
+   totalLp: numberDef
   },
  lol: 
   {
-   id: String,
-   accountId: String,
-   puuid: String,
-   name: String,
-   profileIconId: Number,
-   revisionDate: Number,
-   summonerLevel: Number,
+   id: stringDef,
+   accountId: stringDef,
+   puuid: stringDef,
+   name: stringDef,
+   profileIconId: stringDef,
+   revisionDate: stringDef,
+   summonerLevel: stringDef,
    ranked: [
     {
      rankedFlexSr: [
       {
-       tier: String,
-       rank: String,
-       lp: Number,
-       wins: Number,
-       losses: Number,
+       tier: stringDef,
+       rank: stringDef,
+       lp: numberDef,
+       wins: numberDef,
+       losses: numberDef,
       },
      ],
      rankedSolo5x5: [
       {
-       tier: String,
-       rank: String,
-       lp: Number,
-       wins: Number,
-       losses: Number,
+       tier: stringDef,
+       rank: stringDef,
+       lp: numberDef,
+       wins: numberDef,
+       losses: numberDef,
       },
      ],
     },
    ],
-   matches: [String],
+   matches: [stringDef],
   },
 });
 
