@@ -195,7 +195,7 @@ export default (client: Client) => {
    }
   }
  };
- testFunction(); // for testing only
+ 
  setInterval(testFunction, 3 * 60000);
 };
 export const config = {

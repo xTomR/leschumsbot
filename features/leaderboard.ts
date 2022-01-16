@@ -5,7 +5,7 @@ export default async (client: Client,message: Message)  => {
 
         const foo = async () => {
         const guild = client.guilds.cache.get('924806922874552320')
-        const top10users = await usersSchema.find().sort({totalLp: -1})
+        const top10users = await usersSchema.find().sort({'discord.totalLp': -1})
         const users = await usersSchema.find({}).exec()
         users.sort()
         if(top10users.length === 0){    
@@ -25,9 +25,11 @@ export default async (client: Client,message: Message)  => {
             .setColor('GREEN')
             .setAuthor('LESCHUMS')
             .setTimestamp()
-            for(const eachUser of top10users){            
-                content += `${i}. ${eachUser.lol.name} ~ ${eachUser.discord.rank} ~ ${eachUser.discord.totalLp} LP\n`
-                i++
+            for(const eachUser of top10users){
+                if(eachUser.lol.name != ''){
+                    content += `${i}. ${eachUser.lol.name} ~ ${eachUser.discord.rank} ~ ${eachUser.discord.totalLp} LP\n`
+                    i++
+            }        
             }
             embed.setDescription(content)
             const channel = await guild.channels.fetch('930640710057734235') as TextBasedChannel
@@ -35,7 +37,7 @@ export default async (client: Client,message: Message)  => {
             message.edit({embeds: [embed]})
             }
     }
-    foo()
+    setInterval(foo, 60000)
 }
 
 export const config = {

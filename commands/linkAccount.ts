@@ -35,18 +35,16 @@ export default {
         {
             _id: member.id // look for this and if theres none it creates it otherwise it updates it.
         },
-        {
-            lol: 
-            {        
-                id: profile.id,
-                accountId: profile.accountId,
-                puuid: profile.puuid,
-                name: profile.name, 
-                profileIconId: profile.profileIconId,
-                revisionDate: profile.revisionDate,
-                summonerLevel: profile.summonerLevel,
-                matches: []
-            }
+        {      
+            'lol.id': profile.id,
+            'lol.accountId': profile.accountId,
+            'lol.puuid': profile.puuid,
+            'lol.name': profile.name, 
+            'lol.profileIconId': profile.profileIconId,
+            'lol.revisionDate': profile.revisionDate,
+            'lol.summonerLevel': profile.summonerLevel,
+            'lol.matches': [],
+            'discord.totalLp': 0
         },
         {
         upsert: true, // look for this and if theres none it creates it otherwise it updates it.
