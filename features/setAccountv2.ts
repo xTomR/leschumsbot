@@ -2,7 +2,7 @@ import { Client } from "discord.js";
 import usersSchema from "../models/users-schema";
 
 export default async (client: Client) => {
-    const guild = client.guilds.cache.get("924806922874552320");
+    try{    const guild = client.guilds.cache.get("924806922874552320");
     const everyMember = await guild.members.fetch()
     everyMember.each(async member => {
         if(member.id != '924806180755341342'){
@@ -14,14 +14,16 @@ export default async (client: Client) => {
                 'discord.memberId': member.id,
                 'discord.guildId': "924806922874552320",
                 'discord.discordRole': "925833005602320394",
-                'discord.rank': 'Iron IV'
                 },
                 {
                 upsert: true,
-                }
+                },
+                
                 );  
         }
-    })  
+    }) }catch(err){
+        console.log(err)
+    } 
 }
 export const config = {
     displayName: 'SetAccountV2',

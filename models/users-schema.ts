@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const stringDef = {type:"String", default: ''}
 const numberDef = {type:"Number", default: 0}
+const booleanDef = {type: 'Boolean'}
 
 const usersSchema = new Schema({
   _id: stringDef,
@@ -11,7 +12,7 @@ const usersSchema = new Schema({
    guildId: stringDef,
    discordRole: stringDef,
    rank: stringDef,
-   totalLp: numberDef
+   totalLp: numberDef,
   },
  lol: 
   {
@@ -22,28 +23,54 @@ const usersSchema = new Schema({
    profileIconId: stringDef,
    revisionDate: stringDef,
    summonerLevel: stringDef,
-   ranked: [
-    {
-     rankedFlexSr: [
-      {
+   ranked: {type: 'Object', default: {
+    rankedFlexSr: 
+     {
+       leagueId: stringDef,
+       queueType: stringDef,
        tier: stringDef,
        rank: stringDef,
-       lp: numberDef,
+       summonerId: stringDef,
+       summonerName: stringDef,
+       leaguePoints: numberDef,
        wins: numberDef,
        losses: numberDef,
-      },
-     ],
-     rankedSolo5x5: [
-      {
+       veteran: booleanDef,
+       inactive: booleanDef,
+       freshBlood: booleanDef,
+       hotStreak: booleanDef,
+     },
+    rankedSolo5x5: 
+     {
+       leagueId: stringDef,
+       queueType: stringDef,
        tier: stringDef,
        rank: stringDef,
-       lp: numberDef,
+       summonerId: stringDef,
+       summonerName: stringDef,
+       leaguePoints: numberDef,
        wins: numberDef,
        losses: numberDef,
-      },
-     ],
-    },
-   ],
+       veteran: booleanDef,
+       inactive: booleanDef,
+       freshBlood: booleanDef,
+       hotStreak: booleanDef,
+     },
+     rankedTftPairs:
+       {
+       queueType: stringDef,
+       summonerId: stringDef,
+       summonerName: stringDef,
+       leaguePoints: numberDef,
+       wins: numberDef,
+       losses: numberDef,
+       veteran: booleanDef,
+       inactive: booleanDef,
+       freshBlood: booleanDef,
+       hotStreak: booleanDef,
+       } 
+   }, },
+    
    matches: [stringDef],
   },
 });

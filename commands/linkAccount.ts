@@ -20,7 +20,6 @@ export default {
 
  callback: async ({ interaction, member }) => {
   const summonername = interaction.options.getString("your-summoner-name");
-
   const sendGetRequest = async () => {
     const profile = await galeforce.lol.summoner()
     .region(galeforce.region.lol.NORTH_AMERICA)
@@ -50,6 +49,7 @@ export default {
         upsert: true, // look for this and if theres none it creates it otherwise it updates it.
         }
     );
+
    } catch (err) {
     await interaction.reply({
      content: `${summonername} does not exist`,

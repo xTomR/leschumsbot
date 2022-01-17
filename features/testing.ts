@@ -195,8 +195,11 @@ export default (client: Client) => {
    }
   }
  };
- 
- setInterval(testFunction, 3 * 60000);
+ try{setInterval(testFunction, 3 * 60000);} 
+ catch (err) {
+     console.log(err)
+ }
+
 };
 export const config = {
  displayName: "testing",

@@ -26,4 +26,5 @@ client.on("ready", () => {
   mongoUri: process.env.MONGO_URI,
  });
 });
+
 client.login(process.env.TOKEN);

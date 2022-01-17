@@ -37,7 +37,10 @@ export default async (client: Client,message: Message)  => {
             message.edit({embeds: [embed]})
             }
     }
-    setInterval(foo, 60000)
+    try{setInterval(foo, 60000)}
+    catch(err){
+        console.log(err)
+    }
 }
 
 export const config = {

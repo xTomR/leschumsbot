@@ -86,7 +86,9 @@ export default (client: Client) => {
   lpIncMatches();
  };
  
- setInterval(fetch, 5 * 60000); //Every 5 minutes
+ try{setInterval(fetch, 5 * 60000);} catch(err){
+     console.log(err)
+ } //Every 5 minutes
 };
 export const config = {
  displayName: "Fetch Matches",
