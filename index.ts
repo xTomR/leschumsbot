@@ -27,4 +27,8 @@ client.on("ready", () => {
  });
 });
 
+client.on("unhandledRejection", error => {
+  console.error("Unhandled promise rejection:", error)
+})
+
 client.login(process.env.TOKEN);

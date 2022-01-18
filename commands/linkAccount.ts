@@ -21,35 +21,35 @@ export default {
  callback: async ({ interaction, member }) => {
   const summonername = interaction.options.getString("your-summoner-name");
   const sendGetRequest = async () => {
-    const profile = await galeforce.lol.summoner()
+   const profile = await galeforce.lol
+    .summoner()
     .region(galeforce.region.lol.NORTH_AMERICA)
     .name(summonername)
-    .exec()
+    .exec();
    try {
     await interaction.reply({
      content: `Your summoner's name is now set to ${summonername}`,
     });
-    console.log(member.id)
+    console.log(member.id);
     await usersSchema.findOneAndUpdate(
-        {
-            _id: member.id // look for this and if theres none it creates it otherwise it updates it.
-        },
-        {      
-            'lol.id': profile.id,
-            'lol.accountId': profile.accountId,
-            'lol.puuid': profile.puuid,
-            'lol.name': profile.name, 
-            'lol.profileIconId': profile.profileIconId,
-            'lol.revisionDate': profile.revisionDate,
-            'lol.summonerLevel': profile.summonerLevel,
-            'lol.matches': [],
-            'discord.totalLp': 0
-        },
-        {
-        upsert: true, // look for this and if theres none it creates it otherwise it updates it.
-        }
+     {
+      _id: member.id, // look for this and if theres none it creates it otherwise it updates it.
+     },
+     {
+      "lol.id": profile.id,
+      "lol.accountId": profile.accountId,
+      "lol.puuid": profile.puuid,
+      "lol.name": profile.name,
+      "lol.profileIconId": profile.profileIconId,
+      "lol.revisionDate": profile.revisionDate,
+      "lol.summonerLevel": profile.summonerLevel,
+      "lol.matches": [],
+      "discord.totalLp": 0,
+     },
+     {
+      upsert: true, // look for this and if theres none it creates it otherwise it updates it.
+     }
     );
-
    } catch (err) {
     await interaction.reply({
      content: `${summonername} does not exist`,

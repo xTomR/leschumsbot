@@ -39,169 +39,248 @@ export default (client: Client) => {
   const guild = client.guilds.cache.get("924806922874552320");
   if (!guild) return;
   for (const eachUser of users) {
-   const member = guild.members.cache.get(eachUser.discord.memberId) ||
+   const member =
+    guild.members.cache.get(eachUser.discord.memberId) ||
     (await guild.members.fetch(eachUser.discord.memberId).catch(() => null));
    if (!member) return;
    if (eachUser.discord.totalLp >= 100 && eachUser.discord.totalLp < 200) {
     member.roles.add(roles.get("Iron III"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Iron III" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Iron III" }
     );
-   } else if (eachUser.discord.totalLp >= 200 && eachUser.discord.totalLp < 300) {
+   } else if (
+    eachUser.discord.totalLp >= 200 &&
+    eachUser.discord.totalLp < 300
+   ) {
     member.roles.add(roles.get("Iron II"));
     await usersSchema.updateOne(
-        { 'lol.puuid': eachUser.lol.puuid }, 
-        { 'discord.rank': "Iron II" });
-   } else if (eachUser.discord.totalLp >= 300 && eachUser.discord.totalLp < 400) {
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Iron II" }
+    );
+   } else if (
+    eachUser.discord.totalLp >= 300 &&
+    eachUser.discord.totalLp < 400
+   ) {
     member.roles.add(roles.get("Iron I"));
     await usersSchema.updateOne(
-        { 'lol.puuid': eachUser.lol.puuid }, 
-        { 'discord.rank': "Iron I" });
-   } else if (eachUser.discord.totalLp >= 400 && eachUser.discord.totalLp < 500) {
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Iron I" }
+    );
+   } else if (
+    eachUser.discord.totalLp >= 400 &&
+    eachUser.discord.totalLp < 500
+   ) {
     member.roles.add(roles.get("Bronze IV"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Bronze IV" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Bronze IV" }
     );
-   } else if (eachUser.discord.totalLp >= 500 && eachUser.discord.totalLp < 600) {
+   } else if (
+    eachUser.discord.totalLp >= 500 &&
+    eachUser.discord.totalLp < 600
+   ) {
     member.roles.add(roles.get("Bronze III"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Bronze III" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Bronze III" }
     );
-   } else if (eachUser.discord.totalLp >= 600 && eachUser.discord.totalLp < 700) {
+   } else if (
+    eachUser.discord.totalLp >= 600 &&
+    eachUser.discord.totalLp < 700
+   ) {
     member.roles.add(roles.get("Bronze II"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Bronze II" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Bronze II" }
     );
-   } else if (eachUser.discord.totalLp >= 700 && eachUser.discord.totalLp < 800) {
+   } else if (
+    eachUser.discord.totalLp >= 700 &&
+    eachUser.discord.totalLp < 800
+   ) {
     member.roles.add(roles.get("Bronze I"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Bronze I" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Bronze I" }
     );
-   } else if (eachUser.discord.totalLp >= 800 && eachUser.discord.totalLp < 900) {
+   } else if (
+    eachUser.discord.totalLp >= 800 &&
+    eachUser.discord.totalLp < 900
+   ) {
     member.roles.add(roles.get("Silver IV"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Silver IV" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Silver IV" }
     );
-   } else if (eachUser.discord.totalLp >= 900 && eachUser.discord.totalLp < 1000) {
+   } else if (
+    eachUser.discord.totalLp >= 900 &&
+    eachUser.discord.totalLp < 1000
+   ) {
     member.roles.add(roles.get("Silver III"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Silver III" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Silver III" }
     );
-   } else if (eachUser.discord.totalLp >= 1000 && eachUser.discord.totalLp < 1100) {
+   } else if (
+    eachUser.discord.totalLp >= 1000 &&
+    eachUser.discord.totalLp < 1100
+   ) {
     member.roles.add(roles.get("Silver II"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Silver II" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Silver II" }
     );
-   } else if (eachUser.discord.totalLp >= 1100 && eachUser.discord.totalLp < 1200) {
+   } else if (
+    eachUser.discord.totalLp >= 1100 &&
+    eachUser.discord.totalLp < 1200
+   ) {
     member.roles.add(roles.get("Silver I"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Silver I" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Silver I" }
     );
-   } else if (eachUser.discord.totalLp >= 1200 && eachUser.discord.totalLp < 1300) {
+   } else if (
+    eachUser.discord.totalLp >= 1200 &&
+    eachUser.discord.totalLp < 1300
+   ) {
     member.roles.add(roles.get("Gold IV"));
     await usersSchema.updateOne(
-        { 'lol.puuid': eachUser.lol.puuid }, 
-        { 'discord.rank': "Gold IV" });
-   } else if (eachUser.discord.totalLp >= 1300 && eachUser.discord.totalLp < 1400) {
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Gold IV" }
+    );
+   } else if (
+    eachUser.discord.totalLp >= 1300 &&
+    eachUser.discord.totalLp < 1400
+   ) {
     member.roles.add(roles.get("Gold III"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Gold III" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Gold III" }
     );
-   } else if (eachUser.discord.totalLp >= 1400 && eachUser.discord.totalLp < 1500) {
+   } else if (
+    eachUser.discord.totalLp >= 1400 &&
+    eachUser.discord.totalLp < 1500
+   ) {
     member.roles.add(roles.get("Gold II"));
     await usersSchema.updateOne(
-        { 'lol.puuid': eachUser.lol.puuid }, 
-        { 'discord.rank': "Gold II" });
-   } else if (eachUser.discord.totalLp >= 1500 && eachUser.discord.totalLp < 1600) {
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Gold II" }
+    );
+   } else if (
+    eachUser.discord.totalLp >= 1500 &&
+    eachUser.discord.totalLp < 1600
+   ) {
     member.roles.add(roles.get("Gold I"));
     await usersSchema.updateOne(
-        { 'lol.puuid': eachUser.lol.puuid }, 
-        { 'discord.rank': "Gold I" });
-   } else if (eachUser.discord.totalLp >= 1600 && eachUser.discord.totalLp < 1700) {
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Gold I" }
+    );
+   } else if (
+    eachUser.discord.totalLp >= 1600 &&
+    eachUser.discord.totalLp < 1700
+   ) {
     member.roles.add(roles.get("Platinum IV"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Platinum IV" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Platinum IV" }
     );
-   } else if (eachUser.discord.totalLp >= 1700 && eachUser.discord.totalLp < 1800) {
+   } else if (
+    eachUser.discord.totalLp >= 1700 &&
+    eachUser.discord.totalLp < 1800
+   ) {
     member.roles.add(roles.get("Platinum III"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Platinum III" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Platinum III" }
     );
-   } else if (eachUser.discord.totalLp >= 1800 && eachUser.discord.totalLp < 1900) {
+   } else if (
+    eachUser.discord.totalLp >= 1800 &&
+    eachUser.discord.totalLp < 1900
+   ) {
     member.roles.add(roles.get("Platinum II"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Platinum II" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Platinum II" }
     );
-   } else if (eachUser.discord.totalLp >= 1900 && eachUser.discord.totalLp < 2000) {
+   } else if (
+    eachUser.discord.totalLp >= 1900 &&
+    eachUser.discord.totalLp < 2000
+   ) {
     member.roles.add(roles.get("Platinum I"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Platinum I" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Platinum I" }
     );
-   } else if (eachUser.discord.totalLp >= 2000 && eachUser.discord.totalLp < 2100) {
+   } else if (
+    eachUser.discord.totalLp >= 2000 &&
+    eachUser.discord.totalLp < 2100
+   ) {
     member.roles.add(roles.get("Diamond IV"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Diamond IV" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Diamond IV" }
     );
-   } else if (eachUser.discord.totalLp >= 2100 && eachUser.discord.totalLp < 2200) {
+   } else if (
+    eachUser.discord.totalLp >= 2100 &&
+    eachUser.discord.totalLp < 2200
+   ) {
     member.roles.add(roles.get("Diamond III"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Diamond III" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Diamond III" }
     );
-   } else if (eachUser.discord.totalLp >= 2200 && eachUser.discord.totalLp < 2300) {
+   } else if (
+    eachUser.discord.totalLp >= 2200 &&
+    eachUser.discord.totalLp < 2300
+   ) {
     member.roles.add(roles.get("Diamond II"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Diamond II" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Diamond II" }
     );
-   } else if (eachUser.discord.totalLp >= 2300 && eachUser.discord.totalLp < 2400) {
+   } else if (
+    eachUser.discord.totalLp >= 2300 &&
+    eachUser.discord.totalLp < 2400
+   ) {
     member.roles.add(roles.get("Diamond I"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Diamond I" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Diamond I" }
     );
-   } else if (eachUser.discord.totalLp >= 2400 && eachUser.discord.totalLp < 2500) {
+   } else if (
+    eachUser.discord.totalLp >= 2400 &&
+    eachUser.discord.totalLp < 2500
+   ) {
     member.roles.add(roles.get("Master"));
     await usersSchema.updateOne(
-        { 'lol.puuid': eachUser.lol.puuid }, 
-        { 'discord.rank': "Master" });
-   } else if (eachUser.discord.totalLp >= 2500 && eachUser.discord.totalLp < 2600) {
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Master" }
+    );
+   } else if (
+    eachUser.discord.totalLp >= 2500 &&
+    eachUser.discord.totalLp < 2600
+   ) {
     member.roles.add(roles.get("Grandmaster"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Grandmaster" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Grandmaster" }
     );
    } else if (eachUser.discord.totalLp >= 2600) {
     member.roles.add(roles.get("Challenger"));
     await usersSchema.updateOne(
-     { 'lol.puuid': eachUser.lol.puuid },
-     { 'discord.rank': "Challenger" }
+     { "lol.puuid": eachUser.lol.puuid },
+     { "discord.rank": "Challenger" }
     );
    }
   }
  };
- try{setInterval(testFunction, 3 * 60000);} 
- catch (err) {
-     console.log(err)
+ try {
+  setInterval(testFunction, 3 * 60000);
+ } catch (err) {
+  console.log(err);
  }
-
 };
 export const config = {
  displayName: "testing",
-        dbName: "TEST",
+ dbName: "TEST",
 };

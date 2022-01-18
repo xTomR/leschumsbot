@@ -50,7 +50,7 @@ const rankedIcon = {
   .URL(),
 };
 const getProfileIcon = async (member) => {
- const user = await usersSchema.findOne({ 'discord.memberId': member });
+ const user = await usersSchema.findOne({ "discord.memberId": member });
  const profile = await galeforce.lol
   .summoner()
   .region(galeforce.region.lol.NORTH_AMERICA)

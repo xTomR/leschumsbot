@@ -2,7 +2,6 @@ import { Client } from "discord.js";
 import usersSchema from "../models/users-schema";
 import matchSchema from "../models/match-schema";
 
-
 export default (client: Client) => {
  const getExpPerGame = async () => {
   const users = await usersSchema.find({}).exec();
@@ -15,9 +14,9 @@ export default (client: Client) => {
    for (const eachMatch of lp1) {
     for (const eachUser of users) {
      if (eachMatch.participants.includes(eachUser.lol.puuid)) {
-        const filter = { 'lol.puuid': eachUser.lol.puuid }
-        const update = { $inc: { 'discord.totalLp': lpBasic } }
-        await usersSchema.updateOne(filter, update);
+      const filter = { "lol.puuid": eachUser.lol.puuid };
+      const update = { $inc: { "discord.totalLp": lpBasic } };
+      await usersSchema.updateOne(filter, update);
      }
     }
    }
@@ -36,9 +35,9 @@ export default (client: Client) => {
    for (const eachMatch of lp2) {
     for (const eachUser of users) {
      if (eachMatch.participants.includes(eachUser.lol.puuid)) {
-        const filter = { 'lol.puuid': eachUser.lol.puuid }
-        const update = { $inc: { 'discord.totalLp': lpBasic*2 } }
-        await usersSchema.updateOne(filter, update);
+      const filter = { "lol.puuid": eachUser.lol.puuid };
+      const update = { $inc: { "discord.totalLp": lpBasic * 2 } };
+      await usersSchema.updateOne(filter, update);
      }
     }
    }
@@ -57,9 +56,9 @@ export default (client: Client) => {
    for (const eachMatch of lp3) {
     for (const eachUser of users) {
      if (eachMatch.participants.includes(eachUser.lol.puuid)) {
-        const filter = { 'lol.puuid': eachUser.lol.puuid }
-        const update = { $inc: { 'discord.totalLp': lpBasic*3 } }
-        await usersSchema.updateOne(filter, update);
+      const filter = { "lol.puuid": eachUser.lol.puuid };
+      const update = { $inc: { "discord.totalLp": lpBasic * 3 } };
+      await usersSchema.updateOne(filter, update);
      }
     }
    }
@@ -78,9 +77,9 @@ export default (client: Client) => {
    for (const eachMatch of lp4) {
     for (const eachUser of users) {
      if (eachMatch.participants.includes(eachUser.lol.puuid)) {
-        const filter = { 'lol.puuid': eachUser.lol.puuid }
-        const update = { $inc: { 'discord.totalLp': lpBasic*4 } }
-        await usersSchema.updateOne(filter, update);
+      const filter = { "lol.puuid": eachUser.lol.puuid };
+      const update = { $inc: { "discord.totalLp": lpBasic * 4 } };
+      await usersSchema.updateOne(filter, update);
      }
     }
    }
@@ -99,9 +98,9 @@ export default (client: Client) => {
    for (const eachMatch of lp5) {
     for (const eachUser of users) {
      if (eachMatch.participants.includes(eachUser.lol.puuid)) {
-        const filter = { 'lol.puuid': eachUser.lol.puuid }
-        const update = { $inc: { 'discord.totalLp': lpBasic*5 } }
-        await usersSchema.updateOne(filter, update);
+      const filter = { "lol.puuid": eachUser.lol.puuid };
+      const update = { $inc: { "discord.totalLp": lpBasic * 5 } };
+      await usersSchema.updateOne(filter, update);
      }
     }
    }
@@ -113,9 +112,11 @@ export default (client: Client) => {
   };
   findLp5();
  };
-try{setInterval(getExpPerGame, 7 * 60000);} catch(err){
-   console.log(err)
-} // Every 7 minutes
+ try {
+  setInterval(getExpPerGame, 7 * 60000);
+ } catch (err) {
+  console.log(err);
+ } // Every 7 minutes
 };
 
 export const config = {

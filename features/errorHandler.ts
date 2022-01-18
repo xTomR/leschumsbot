@@ -1,6 +1,5 @@
 // import { Client, MessageEmbed, TextBasedChannel, Message } from "discord.js";
 
-
 // export default  async (client: Client) => {
 //     client.on('unhandledRejection', async (reason, p) => {
 //         console.log('[Anti-crash] :: Unhandled Rejection/Catch')
@@ -16,7 +15,7 @@
 //         const guild = client.guilds.cache.get('924806922874552320')
 //         const errChannel = await guild.channels.fetch('932441744954507275') as TextBasedChannel
 //         errChannel.send({embeds: [errEmbed]})
-        
+
 //     })
 //     client.on('uncaughtException', async (err, origin) => {
 //         console.log('[Anti-crash] :: Uncaught Exception/Catch')
@@ -69,4 +68,3 @@
 //     displayName: "ErrorHandling",
 //     dbName: "ERR_HANDLING",
 //    };
-   
