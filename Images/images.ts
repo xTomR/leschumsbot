@@ -2,7 +2,7 @@ import usersSchema from "../models/users-schema";
 import Galeforce from "galeforce";
 const galeforce = new Galeforce();
 
-const rankedIcon = {
+const RANKED_ICON = {
  iron: galeforce.lol.ddragon.profileIcon
   .art()
   .version("11.21.1")
@@ -48,34 +48,26 @@ const rankedIcon = {
   .version("11.21.1")
   .assetId(5130)
   .URL(),
-};
-const getProfileIcon = async (member) => {
+}; // returns a promise
+
+const profileIcon = async (member) => {
+  const getProfileIcon = (id) => {
+    if(id != 0  || undefined || null){    
+      const profileIcon = galeforce.lol.ddragon.profileIcon
+        .art()
+        .version("11.21.1")
+        .assetId(id)
+        .URL()
+      return profileIcon
+    } else {
+      const profileIcon = 'error'
+      return profileIcon
+    } 
+  }
  const user = await usersSchema.findOne({ "discord.memberId": member });
- const profile = await galeforce.lol
-  .summoner()
-  .region(galeforce.region.lol.NORTH_AMERICA)
-  .puuid(user.lol.puuid)
-  .exec();
- const profileIdNumber = profile.profileIconId;
- const profileIcon = galeforce.lol.ddragon.profileIcon
-  .art()
-  .version("11.21.1")
-  .assetId(profileIdNumber)
-  .URL();
+ 
+ const profileIcon = getProfileIcon(user.lol.profileIconId)
  return profileIcon;
 };
 
-// Testing !
-// const getRankedIcon = async (member) => {
-//     const user = await usersSchema.findOne({'memberId': member})
-//     const profile = await galeforce.lol.league.entries()
-//     .summonerId('JgGeZNMMpM8ofkZ6R1dXMJtd97VxEZ2lCwplanLVY4K6HQE')
-//     const profileRankedIdNumber = profile.tier
-//     const profileIcon = galeforce.lol.ddragon.profileIcon.art()
-//     .version('11.21.1')
-//     .assetId(profileRankedIdNumber)
-//     .URL()
-//     return profileIcon
-// }
-
-export { rankedIcon, getProfileIcon };
+export { RANKED_ICON, profileIcon };

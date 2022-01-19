@@ -68,3 +68,24 @@
 //     displayName: "ErrorHandling",
 //     dbName: "ERR_HANDLING",
 //    };
+
+
+
+//FIXME:
+// const sureThing = promise =>
+// promise
+// .then(result => ({ok: true, result}))
+// .catch(error => Promise.resolve({ok: false, error}))
+
+// const foo = async ()  => {
+//   const matchIdss = galeforce.lol.match
+//   .list()
+//   .region(galeforce.region.riot.AMERICAS)
+//   .puuid('asdasd')
+//   .exec()
+//   return matchIdss
+// }
+// const test2 = async () => {
+//   const result = await (sureThing(foo()))
+//   console.log(result)}
+// test2()

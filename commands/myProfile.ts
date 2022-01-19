@@ -1,7 +1,7 @@
 import { MessageEmbed } from "discord.js";
 import { ICommand } from "wokcommands";
 import usersSchema from "../models/users-schema";
-import { rankedIcon, getProfileIcon } from "../Images/images";
+import { RANKED_ICON, profileIcon } from "../Images/images";
 
 export default {
  category: "Account",
@@ -12,17 +12,17 @@ export default {
  callback: async ({ interaction, member }) => {
   const getTheRankIcon = (rank: String) => {
    if (rank.includes("iron")) {
-    return rankedIcon.iron;
+    return RANKED_ICON.iron;
    } else if (rank.includes("Bronze")) {
-    return rankedIcon.bronze;
+    return RANKED_ICON.bronze;
    } else if (rank.includes("Silver")) {
-    return rankedIcon.silver;
+    return RANKED_ICON.silver;
    } else if (rank.includes("Gold")) {
-    return rankedIcon.gold;
+    return RANKED_ICON.gold;
    } else if (rank.includes("Platinum")) {
-    return rankedIcon.platinum;
+    return RANKED_ICON.platinum;
    } else if (rank.includes("Diamond")) {
-    return rankedIcon.diamond;
+    return RANKED_ICON.diamond;
    }
   };
   const getTheColor = (rank: String) => {
@@ -51,7 +51,7 @@ export default {
     position++;
    }
   }
-  const profileIcon = await getProfileIcon(member.id);
+  const profile = await profileIcon(member.id);
   const theRankIcon = getTheRankIcon(user.discord.rank);
   const theColor = getTheColor(user.discord.rank);
   let winRateFlex = 0;
@@ -73,7 +73,7 @@ export default {
    );
   }
   const embed = new MessageEmbed()
-   .setThumbnail(profileIcon)
+   .setThumbnail(profile)
    .setColor(theColor)
    .setFooter(
     "leschums",

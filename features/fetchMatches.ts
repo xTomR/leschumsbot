@@ -2,10 +2,13 @@ import { Client } from "discord.js";
 import usersSchema from "../models/users-schema";
 import matchSchema from "../models/match-schema";
 import GaleforceModule from "galeforce";
+import { ExplicitContentFilterLevels } from "discord.js/typings/enums";
 
 const galeforce = new GaleforceModule();
 
+
 export default (client: Client) => {
+
  // fetch the 20 last matches from each users in the database.
  const fetchMatches = async () => {
   const users = await usersSchema.find({}).exec();
