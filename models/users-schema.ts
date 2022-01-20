@@ -7,6 +7,7 @@ const booleanDef = { type: "Boolean" };
 const usersSchema = new Schema({
  _id: stringDef,
  discord: {
+  lolAccountSet: booleanDef,
   memberId: stringDef,
   guildId: stringDef,
   discordRole: stringDef,

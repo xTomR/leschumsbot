@@ -2,42 +2,51 @@ import { Client } from "discord.js";
 import usersSchema from "../models/users-schema";
 import matchSchema from "../models/match-schema";
 import GaleforceModule from "galeforce";
-import { ExplicitContentFilterLevels } from "discord.js/typings/enums";
+import {promiseCheck} from "../features/errorHandler"
 
 const galeforce = new GaleforceModule();
 
 
-export default (client: Client) => {
+export default async (client: Client) => {
 
- // fetch the 20 last matches from each users in the database.
- const fetchMatches = async () => {
-  const users = await usersSchema.find({}).exec();
-  for (const eachUser of users) {
-   const getMatchIds = async () => {
-    try {
-     const matchIds = await galeforce.lol.match
+const usersLolAccountSet = async () => {
+  const users = await usersSchema.find({'discord.lolAccountSet': true})
+  return users
+}
+const users = await promiseCheck(usersLolAccountSet())
+
+//TODO:
+const matchId = async (user) => {
+    const getMatchIds = async () => {
+      const matchIds = await galeforce.lol.match
       .list()
       .region(galeforce.region.riot.AMERICAS)
-      .puuid(eachUser.lol.puuid)
+      .puuid(user.lol.puuid)
       .exec();
-     return matchIds;
-    } catch (err) {
-     console.log("Error");
-     return err;
+     return matchIds
     }
-   };
-   const matchIds = await getMatchIds();
 
-   if (eachUser.lol.puuid === "") {
-    console.log(`${eachUser._id}'s puuid is empty.`);
-   } else {
-    console.log(`The last 20 matches of ${eachUser.lol.name} fetched`);
-    const filter = { "lol.puuid": eachUser.lol.puuid };
-    const update = { $addToSet: { "lol.matches": matchIds } };
-    await usersSchema.findOneAndUpdate(filter, update);
-   }
+   const matchIds = await promiseCheck(getMatchIds())
+   return matchIds
+}
+
+const setMatchInDatabase = async (matches, user) => {
+  const filter = { "lol.puuid": user.lol.puuid };
+  const update = { $addToSet: { "lol.matches": matches } };
+  await usersSchema.findOneAndUpdate(filter, update);
+}
+
+
+for(const user of users){
+  const matches = await matchId(user)
+  if(matches.ok === true){
+    setMatchInDatabase(matches.result, user)
+    console.log(`Last 20 matches of ${user.lol.name}`)
+  } else {
+    console.error(matches.error)
   }
- };
+}
+
  // totalmatches is all the matches from users merged together
  const totalMatches = async () => {
   await fetchMatches();
