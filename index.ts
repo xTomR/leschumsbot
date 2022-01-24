@@ -11,11 +11,14 @@ const client = new discordJS.Client({
   Intents.FLAGS.GUILD_MESSAGES,
   Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
   Intents.FLAGS.GUILD_MEMBERS,
+  Intents.FLAGS.GUILD_VOICE_STATES,
+  Intents.FLAGS.GUILD_PRESENCES
  ],
 });
 
+
 // Basic Event handling like connect to databases ETC.
-client.on("ready", async () => {
+client.on("ready", async (interaction) => {
  console.log("The bot is ready");
 
  const wok = new WOKCommands(client, {

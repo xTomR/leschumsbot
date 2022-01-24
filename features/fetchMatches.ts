@@ -49,7 +49,6 @@ export default async () => {
             const matches = await matchId(user)
             if(matches != undefined){
               setMatchInDatabase(matches, user)
-              console.log(`Last 20 matches of ${user.lol.name}`)
             } else {
               console.error(`matchId() returned undefined`)
             }
@@ -57,6 +56,7 @@ export default async () => {
         } else {
           console.error(`userLolAccountSet() returned undefined`)
         }
+        console.log("Matches set.")
       }
   
       await fetchMatchesOfUsers()
