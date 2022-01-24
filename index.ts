@@ -15,7 +15,7 @@ const client = new discordJS.Client({
 });
 
 // Basic Event handling like connect to databases ETC.
-client.on("ready", () => {
+client.on("ready", async () => {
  console.log("The bot is ready");
 
  const wok = new WOKCommands(client, {

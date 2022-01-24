@@ -1,8 +1,10 @@
 import { Client } from "discord.js";
 import usersSchema from "../models/users-schema";
+import { promiseCheck } from "./errorHandler";
 
 export default (client: Client) => {
- const testFunction = async () => {
+ const guild = client.guilds.cache.get("924806922874552320");
+ const setRoles = async () => {
   const allRoles = () => {
    const allRoles = new Map();
    allRoles.set("Iron I", "929796439427653642");
@@ -35,8 +37,18 @@ export default (client: Client) => {
    return allRoles;
   };
   const roles = allRoles();
-  const users = await usersSchema.find({}).exec();
-  const guild = client.guilds.cache.get("924806922874552320");
+
+  const usersLolAccountSet = async () => {
+   const getUsersLolAccountSet = () => {
+    const users = usersSchema.find({ "discord.lolAccountSet": true }).exec();
+    return users;
+   };
+
+   const usersLolAccountSetCheck = await promiseCheck(getUsersLolAccountSet());
+   return usersLolAccountSetCheck.result;
+  };
+  const users = await usersLolAccountSet();
+
   if (!guild) return;
   for (const eachUser of users) {
    const member =
@@ -273,12 +285,9 @@ export default (client: Client) => {
     );
    }
   }
- };
- try {
-  setInterval(testFunction, 3 * 60000);
- } catch (err) {
-  console.log(err);
- }
+  };
+
+  setInterval(setRoles, 70000);
 };
 export const config = {
  displayName: "testing",

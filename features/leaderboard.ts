@@ -1,13 +1,22 @@
 import { MessageEmbed, Client, TextBasedChannel, Message } from "discord.js";
 import usersSchema from "../models/users-schema";
+import {promiseCheck} from "./errorHandler"
 
-export default async (client: Client, message: Message) => {
- const foo = async () => {
+export default async (client: Client) => {
+ const leaderboard = async () => {
+  const usersLolAccountSet = async () => {    
+    const getUsersLolAccountSetAndSort = () => {
+    const users = usersSchema.find().sort({ "discord.totalLp": -1 })
+    .exec()
+    return users
+  }
+
+  const usersLolAccountSetCheck = await promiseCheck(getUsersLolAccountSetAndSort())
+  return usersLolAccountSetCheck.result
+  }
   const guild = client.guilds.cache.get("924806922874552320");
-  const top10users = await usersSchema.find().sort({ "discord.totalLp": -1 });
-  const users = await usersSchema.find({}).exec();
-  users.sort();
-  if (top10users.length === 0) {
+  const usersSorted = await usersLolAccountSet()
+  if (usersSorted.length === 0) {
    const embed = new MessageEmbed()
     .setTitle("Leaderboard")
     .setColor("GREEN")
@@ -26,7 +35,7 @@ export default async (client: Client, message: Message) => {
     .setColor("GREEN")
     .setAuthor("LESCHUMS")
     .setTimestamp();
-   for (const eachUser of top10users) {
+   for (const eachUser of usersSorted) {
     if (eachUser.lol.name != "") {
      content += `${i}. ${eachUser.lol.name} ~ ${eachUser.discord.rank} ~ ${eachUser.discord.totalLp} LP\n`;
      i++;
@@ -42,11 +51,8 @@ export default async (client: Client, message: Message) => {
    message.edit({ embeds: [embed] });
   }
  };
- try {
-  setInterval(foo, 60000);
- } catch (err) {
-  console.log(err);
- }
+
+  setInterval(leaderboard, 60000);
 };
 
 export const config = {

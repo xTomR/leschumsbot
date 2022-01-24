@@ -112,11 +112,8 @@ export default (client: Client) => {
   };
   findLp5();
  };
- try {
-  setInterval(getExpPerGame, 7 * 60000);
- } catch (err) {
-  console.log(err);
- } // Every 7 minutes
+  setInterval(getExpPerGame, 63000);
+
 };
 
 export const config = {

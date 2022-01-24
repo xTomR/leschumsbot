@@ -1,7 +1,7 @@
 export const promiseCheck = promise =>
 promise
 .then(result => ({ok: true, result}))
-.catch(error => Promise.resolve({ok: false, error}))
+.catch(error => Promise.resolve({ok: false, undefined}))
 
 //EXAMPLE
 // const usersLolAccountSet = async () => {

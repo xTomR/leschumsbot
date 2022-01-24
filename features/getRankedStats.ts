@@ -1,17 +1,40 @@
 import { Client } from "discord.js";
 import usersSchema from "../models/users-schema";
+import {promiseCheck} from "./errorHandler"
 import Galeforce from "galeforce";
 const galeforce = new Galeforce();
 
 export default async (client: Client) => {
  const getRankedStats = async () => {
-  const users = await usersSchema.find({}).exec();
+  const usersLolAccountSet = async () => {    
+    const getUsersLolAccountSet = () => {
+    const users = usersSchema.find({'discord.lolAccountSet': true})
+    .exec()
+    return users
+  }
+
+  const usersLolAccountSetCheck = await promiseCheck(getUsersLolAccountSet())
+  return usersLolAccountSetCheck.result
+  }
+  const users = await usersLolAccountSet()
+
   users.forEach(async (user) => {
-   const league = await galeforce.lol.league
-    .entries()
-    .region(galeforce.region.lol.NORTH_AMERICA)
-    .summonerId(user.lol.id)
-    .exec();
+    
+    const getLeague = async (user) => {
+      const getLeagueInfo = async () => {
+        const leagueInfo = await galeforce.lol.league
+        .entries()
+        .region(galeforce.region.lol.NORTH_AMERICA)
+        .summonerId(user.lol.id)
+        .exec();
+      return leagueInfo
+      }
+  
+    const leagueInfo = await promiseCheck(getLeagueInfo())
+    return leagueInfo.result
+    }
+    const league = await getLeague(user)
+    
    for (let i = 0; i < league.length; i++) {
     const {
      leagueId,
@@ -86,11 +109,8 @@ export default async (client: Client) => {
    }
   });
  };
- try {
-  setInterval(getRankedStats, 120000);
- } catch (err) {
-  console.log(err);
- }
+
+ setInterval(getRankedStats, 121000);
 };
 
 export const config = {

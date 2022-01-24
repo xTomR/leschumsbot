@@ -4,6 +4,7 @@ import usersSchema from "../models/users-schema";
 export default async (client: Client) => {
   const guild = client.guilds.cache.get("924806922874552320");
   const guildMembers = await guild.members.fetch();
+  
   guildMembers.each(async (member) => {
     const user = async (member) => {   
       const filter = {_id: member.id, 'discord.lolAccountSet': false}
