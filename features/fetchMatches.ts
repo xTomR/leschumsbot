@@ -56,7 +56,6 @@ export default async () => {
         } else {
           console.error(`userLolAccountSet() returned undefined`)
         }
-        console.log("Matches set.")
       }
   
       await fetchMatchesOfUsers()
@@ -169,11 +168,10 @@ export default async () => {
 
     const updateDoneToTrue = async () => {
       await matchSchema.updateMany({}, { done: "true" });
-      console.log("lpMultiplier has been set.");
     }
     await updateDoneToTrue()
   }
-  setInterval(matches, 60000) 
+  setInterval(matches, 60000)
 }
 
 export const config = {

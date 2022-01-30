@@ -4,8 +4,10 @@ import WOKCommands from "wokcommands";
 import path from "path";
 dotenv.config();
 
+
+
 // Since discord 13 this is mandatory and it declares the intent of the bot
-const client = new discordJS.Client({
+export const client = new discordJS.Client({
  intents: [
   Intents.FLAGS.GUILDS,
   Intents.FLAGS.GUILD_MESSAGES,
@@ -31,3 +33,4 @@ client.on("ready", async (interaction) => {
 });
 
 client.login(process.env.TOKEN);
+

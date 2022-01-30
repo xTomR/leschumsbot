@@ -24,7 +24,9 @@ export default (client: Client) => {
     { $and: [{ lpMultiplier: 1 }, { lpCounted: "false" }] },
     { lpCounted: true }
    );
-   console.log(`There's ${lp1.length} matches with lpMultiplier at 1`);
+   if(lp1.length != 0){
+   console.log(`There's ${lp1.length} matches with lpMultiplier at 1`)
+   }
   };
   findLp1();
   const findLp2 = async () => {
@@ -45,7 +47,9 @@ export default (client: Client) => {
     { $and: [{ lpMultiplier: 2 }, { lpCounted: "false" }] },
     { lpCounted: true }
    );
-   console.log(`There's ${lp2.length} matches with lpMultiplier at 2`);
+   if(lp2.length != 0){
+    console.log(`There's ${lp2.length} matches with lpMultiplier at 2`)
+   }
   };
   findLp2();
   const findLp3 = async () => {
@@ -66,7 +70,9 @@ export default (client: Client) => {
     { $and: [{ lpMultiplier: 3 }, { lpCounted: "false" }] },
     { lpCounted: true }
    );
-   console.log(`There's ${lp3.length} matches with lpMultiplier at 3`);
+   if(lp3.length != 0){
+   console.log(`There's ${lp3.length} matches with lpMultiplier at 3`)
+   }
   };
   findLp3();
   const findLp4 = async () => {
@@ -87,7 +93,9 @@ export default (client: Client) => {
     { $and: [{ lpMultiplier: 4 }, { lpCounted: "false" }] },
     { lpCounted: true }
    );
-   console.log(`There's ${lp4.length} matches with lpMultiplier at 4`);
+   if(lp4.length != 0){
+   console.log(`There's ${lp4.length} matches with lpMultiplier at 4`)
+   }
   };
   findLp4();
   const findLp5 = async () => {
@@ -108,7 +116,9 @@ export default (client: Client) => {
     { $and: [{ lpMultiplier: 5 }, { lpCounted: "false" }] },
     { lpCounted: true }
    );
-   console.log(`There's ${lp5.length} matches with lpMultiplier at 5`);
+   if(lp5.length != 0){
+   console.log(`There's ${lp5.length} matches with lpMultiplier at 5`)
+   }
   };
   findLp5();
  };
